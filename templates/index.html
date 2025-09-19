@@ -1,0 +1,39 @@
+{% extends 'layout.html' %} 
+{% block extra_css %} <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" /> {% endblock %} 
+
+{% block content %}
+<div class="home-container text-center">
+    <h1 class="home-title">Welcome to My Movie Manager</h1>
+    <h4 class="home-subtitle">
+        Easily manage your movies, genres, and directors.
+    </h4>
+    <!-- Buttons -->
+    <div class="home-buttons">
+        <a href="{{ url_for('view_movies') }}" class="btn btn-primary btn-lg">View Movies</a>
+        <a href="{{ url_for('add_movie') }}" class="btn btn-success btn-lg">Add Movie</a>
+    </div>
+    <!-- Total counts -->
+    <div class="rect-container">
+        <a href="{{ url_for('view_movies') }}" class="text-decoration-none text-dark">
+            <div class="rect-fade">
+                <h3>{{ total_movies }}</h3>
+                <p>Total Movies</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('view_directors') }}" class="text-decoration-none text-dark">
+            <div class="rect-fade">
+                <h3>{{ total_directors }}</h3>
+                <p>Directors</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('view_genres') }}" class="text-decoration-none text-dark">
+            <div class="rect-fade">
+                <h3>{{ total_genres }}</h3>
+                <p>Genres</p>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

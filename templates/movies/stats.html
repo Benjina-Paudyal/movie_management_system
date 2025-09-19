@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Movie Statistics</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-6 text-center">
+            <h4>Watched vs Unwatched</h4>
+            <img src="data:image/png;base64,{{ pie_plot }}" class="img-fluid" alt="Pie Chart">
+        </div>
+        <div class="col-md-6 text-center">
+            <h4>Movies per Genre</h4>
+            <img src="data:image/png;base64,{{ bar_plot }}" class="img-fluid" alt="Bar Chart">
+        </div>
+    </div>
+</div>
+{% endblock %}

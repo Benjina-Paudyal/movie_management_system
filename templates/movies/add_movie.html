@@ -1,0 +1,62 @@
+
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Add Movie</h1>
+
+    <!-- Error message block -->
+    {% if error %}
+    <div class="alert alert-danger">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" id="title" value="{{ request.form.get('title','') }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="genre_id" class="form-label">Genre</label>
+            <select class="form-select" name="genre_id" id="genre_id">
+                <option value="">-- Select Genre --</option>
+                {% for g in genres %}
+                <option value="{{ g.id }}" {% if g.id|string == request.form.get('genre_id','') %}selected{% endif %}>{{ g.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="director_id" class="form-label">Director</label>
+            <select class="form-select" name="director_id" id="director_id">
+                <option value="">-- Select Director --</option>
+                {% for d in directors %}
+                <option value="{{ d.id }}" {% if d.id|string == request.form.get('director_id','') %}selected{% endif %}>{{ d.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="release_date" class="form-label">Release Date</label>
+            <input type="date" class="form-control" name="release_date" id="release_date"  value="{{ request.form.get('release_date','') }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="review" class="form-label">Review</label>
+            <textarea class="form-control" name="review" id="review">{{ request.form.get('review','') }}</textarea>
+        </div>
+
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" name="watched" id="watched"
+                 {% if request.form.get('watched') %}checked{% endif %}>
+            <label for="watched" class="form-check-label">Watched</label>
+        </div>
+
+        <button type="submit" class="btn btn-success">Add Movie</button>
+        <a href="{{ url_for('view_movies') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
